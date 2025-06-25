@@ -366,6 +366,45 @@ footer {
 .form-group {
     width: 100%;
 }
+/* Spinner Styles */
+.spinner {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+/* Form Select Dropdown Styles */
+.form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300f0ff'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 12px;
+    padding-right: 35px;
+    color: var(--light-text);
+    background-color: rgba(30, 30, 40, 0.8);
+}
+
+.form-group select option {
+    background-color: var(--darker-bg);
+    color: var(--light-text);
+}
+
+/* Focus state */
+.form-group select:focus {
+    background-color: rgba(40, 40, 50, 0.9);
+}
 
 .form-group input,
 .form-group select,
@@ -386,6 +425,17 @@ footer {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+.form-group input:invalid,
+.form-group select:invalid,
+.form-group textarea:invalid {
+    border-color: #ff3860;
+}
+
+.form-group input:invalid:focus,
+.form-group select:invalid:focus,
+.form-group textarea:invalid:focus {
+    box-shadow: 0 0 10px rgba(255, 56, 96, 0.3);
 }
 
 .form-group textarea {

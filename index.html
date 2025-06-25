@@ -67,51 +67,48 @@
     </section>
 
     <section id="contact" class="contact-section">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <p><i class="fas fa-envelope"></i> hi@auramaze.in</p>
-                    <p><i class="fas fa-phone"></i> +91 XXXXXXXXXX</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Your Company Address</p>
-                </div>
-                <form class="contact-form" action="https://formsubmit.co/hi@auramaze.in" method="POST">
-    <!-- Add a hidden input for the subject -->
-    <input type="hidden" name="_subject" value="New Contact from Auramaze Website">
-    
-    <!-- Add a hidden input to disable captcha -->
-    <input type="hidden" name="_captcha" value="false">
-    
-    <!-- Add a thank you page redirect (optional) -->
-    <input type="hidden" name="_next" value="https://auramaze.in/thank-you.html">
-    
-    <div class="form-group">
-        <input type="text" id="name" name="name" placeholder="Your Name" required>
-    </div>
-    <div class="form-group">
-        <input type="email" id="email" name="email" placeholder="Your Email" required>
-    </div>
-    <div class="form-group">
-        <input type="tel" id="phone" name="phone" placeholder="Phone Number">
-    </div>
-    <div class="form-group">
-        <select id="service" name="service">
-            <option value="">Select a service</option>
-            <option value="ar-vr">AR/VR Development</option>
-            <option value="game-dev">Game Development</option>
-            <option value="training">Unity Training</option>
-            <option value="other">Other</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Send Message</button>
-</form>
+    <div class="container">
+        <h2>Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <p><i class="fas fa-envelope"></i> hi@auramaze.in</p>
+                <p><i class="fas fa-phone"></i> +91 XXXXXXXXXX</p>
+                <p><i class="fas fa-map-marker-alt"></i> Your Company Address</p>
             </div>
+            <form class="contact-form" id="contactForm" action="https://formsubmit.co/hi@auramaze.in" method="POST">
+                <input type="hidden" name="_subject" value="New Contact from Auramaze Website">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://auramaze.in/thank-you.html">
+                
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" name="phone" placeholder="Phone Number">
+                </div>
+                <div class="form-group">
+                    <select id="service" name="service" required>
+                        <option value="" disabled selected>Select a service</option>
+                        <option value="ar-vr">AR/VR Development</option>
+                        <option value="game-dev">Game Development</option>
+                        <option value="training">Unity Training</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="btn-text">Send Message</span>
+                </button>
+            </form>
         </div>
-    </section>
+    </div>
+</section>
 
     <footer>
         <div class="container">

@@ -29,22 +29,39 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Contact form submission
-    const contactForm = document.getElementById('contactForm');
-    if(contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
+   // Contact form submission
+const contactForm = document.getElementById('contactForm');
+if(contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Disable submit button to prevent multiple submissions
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
+        
+        try {
             const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
             
-            // Here you would typically send the data to a server
-            console.log('Form submitted:', data);
-            
-            // Show success message
-            alert('Thank you for your message! We will contact you soon.');
-            contactForm.reset();
-        });
-    }
+            if(response.ok) {
+                // Redirect to thank you page or show success message
+                window.location.href = '/thank-you.html';
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('There was a problem submitting the form. Please try again.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Message';
+        }
+    });
+}
 });
