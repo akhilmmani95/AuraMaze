@@ -29,21 +29,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Animation for training section when scrolled to
-    const observerOptions = {
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                entry.target.classList.add('animate');
-            }
+    // Contact form submission
+    const contactForm = document.getElementById('contactForm');
+    if(contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            
+            // Here you would typically send the data to a server
+            console.log('Form submitted:', data);
+            
+            // Show success message
+            alert('Thank you for your message! We will contact you soon.');
+            contactForm.reset();
         });
-    }, observerOptions);
-
-    const trainingSection = document.querySelector('.training-section');
-    if(trainingSection) {
-        observer.observe(trainingSection);
     }
 });
