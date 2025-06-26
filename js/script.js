@@ -2,17 +2,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Smooth scrolling for navigation links
     document.querySelectorAll('nav a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
             const targetId = this.getAttribute('href');
-            if(targetId === '#') return;
             
-            const targetElement = document.querySelector(targetId);
-            if(targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+            // Only prevent default for anchor links
+            if(targetId.startsWith('#')) {
+                e.preventDefault();
+                
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });
@@ -29,39 +33,50 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+
+    
    // Contact form submission
 const contactForm = document.getElementById('contactForm');
 if(contactForm) {
     contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
+    e.preventDefault();
+    
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
+    
+    try {
+        const formData = new FormData(contactForm);
         
-        // Disable submit button to prevent multiple submissions
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
-        
-        try {
-            const formData = new FormData(contactForm);
-            const response = await fetch(contactForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-            
-            if(response.ok) {
-                // Redirect to thank you page or show success message
-                window.location.href = '/thank-you.html';
-            } else {
-                throw new Error('Form submission failed');
+        await fetch('https://formsubmit.co/ajax/hi@auramaze.in', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
             }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('There was a problem submitting the form. Please try again.');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Send Message';
-        }
-    });
+        });
+        
+        // Show SweetAlert dialog
+        Swal.fire({
+            title: 'Thank You!',
+            text: 'Your enquiry has been submitted successfully.',
+            icon: 'success',
+            confirmButtonColor: 'var(--primary-color)',
+            confirmButtonText: 'OK'
+        });
+        
+        contactForm.reset();
+    } catch (error) {
+        Swal.fire({
+            title: 'Error',
+            text: 'There was a problem submitting the form. Please try again.',
+            icon: 'error',
+            confirmButtonColor: 'var(--primary-color)'
+        });
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+    }
+});
 }
 });
