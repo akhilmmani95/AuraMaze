@@ -8,7 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/font-awesome/css/all.min.css">
+    <script src="js/services.js"></script>
+    
     <style>
         /* Inherit main styles from style.css */
         
@@ -110,26 +112,34 @@
     .service-card p {
         font-size: 0.8rem; /* Slightly smaller text on mobile */
     }
+
+    
         }
     </style>
 </head>
 <body class="services-main">
     <header class="navbar">
-        <div class="container">
-            <div class="logo">
-                <img src="assets/images/logo.png" alt="Auramaze Logo">
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html" class="active">Services</a></li>
-                    <li><a href="index.html#training">Training</a></li>
-                    <li><a href="index.html#about">About Us</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
-                </ul>
-            </nav>
+    <div class="container">
+        <div class="logo">
+            <img src="assets/images/logo.png" alt="Auramaze Logo">
         </div>
-    </header>
+        <nav>
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <!-- Navigation Links -->
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#training">Training</a></li>
+                <li><a href="services.html">Our Services</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
     <main class="services-container">
         <h1 class="services-title">Our <span>Services</span></h1>
