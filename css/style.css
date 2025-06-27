@@ -368,6 +368,28 @@ body {
     flex-direction: column;
     gap: 20px;
 }
+.form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300f0ff'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 12px;
+    padding-right: 35px;
+    color: var(--light-text);
+    background-color: rgba(30, 30, 40, 0.8);
+}
+
+.form-group select option {
+    background-color: var(--darker-bg);
+    color: var(--light-text);
+}
+
+/* Focus state */
+.form-group select:focus {
+    background-color: rgba(40, 40, 50, 0.9);
+}
 
 .form-group {
     width: 100%;

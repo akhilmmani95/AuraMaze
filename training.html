@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auramaze - Training Programs</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome/css/all.min.css">
+    <style>
+        /* Additional styles specific to training page */
+        .training-main {
+            background: var(--dark-bg);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+        
+        .training-hero {
+            background: linear-gradient(to bottom, var(--darker-bg), rgba(5, 5, 8, 0.8)), 
+                        url('assets/images/training-bg.jpg') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .training-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .training-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--light-text);
+        }
+        
+        .training-hero h1 span {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+        
+        .training-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .programs-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--light-text);
+        }
+        
+        .section-title span {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+        
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .program-card {
+            background: rgba(20, 20, 30, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.2);
+            border-color: var(--primary-color);
+        }
+        
+        .program-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .program-content {
+            padding: 25px;
+            display: flex;
+    flex-direction: column;
+    height: 100%;
+        }
+        .flex-spacer {
+    flex-grow: 1;
+}
+        .program-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .program-content p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .program-details {
+            margin-bottom: 20px;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .detail-item i {
+            color: var(--primary-color);
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--dark-text);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+            box-shadow: 0 0 10px var(--primary-color), 
+                        0 0 20px rgba(0, 240, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .testimonials-section {
+            padding: 80px 0;
+            background-color: var(--darker-bg);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .testimonial-card {
+            background: rgba(20, 20, 30, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            border: 1px solid rgba(0, 240, 255, 0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+        }
+        
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .author-info h4 {
+            color: var(--light-text);
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+        
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta-box {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(20, 20, 30, 0.8);
+            border-radius: 10px;
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
+        }
+        
+        .cta-box h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .cta-box p {
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .training-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .training-hero p {
+                font-size: 1rem;
+            }
+            
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="training-main">
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Auramaze Logo">
+            </div>
+            <nav>
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <!-- Navigation Links -->
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="training-hero">
+        <div class="training-hero-content">
+            <h1>Unlock Your <span>XR Potential</span></h1>
+            <p>Master AR/VR and game development with our industry-focused training programs designed to take you from beginner to professional.</p>
+            <a href="#programs" class="btn btn-primary">Explore Programs</a>
+        </div>
+    </section>
+
+   <section id="programs" class="programs-section">
+    <h2 class="section-title">Our <span>Training Programs</span></h2>
+
+    <div class="programs-grid">
+        <!-- Unity Developer Program -->
+        <div class="program-card">
+            <div class="program-image" style="background-image: url('assets/images/unity-training.jpg');"></div>
+            <div class="program-content">
+                <h3>Unity Developer Program</h3>
+                <p>Master Unity from the ground up with hands-on training in game development, AR/VR, and interactive 3D applications.</p>
+                
+                <div class="program-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>12 Weeks • Intensive Training</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Industry-recognized Certification</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Career & Portfolio Support</span>
+                    </div>
+                </div>
+                <div class="flex-spacer"></div>
+                <a href="index.html#contact" class="btn btn-primary btn-block">Enroll Now</a>
+            </div>
+        </div>
+
+        <!-- AR/VR Specialist -->
+        <div class="program-card">
+            <div class="program-image" style="background-image: url('assets/images/arvr-training.jpg');"></div>
+            <div class="program-content">
+                <h3>AR/VR Specialist Program</h3>
+                <p>Gain specialized skills in building immersive AR/VR experiences using industry-standard tools and platforms.</p>
+                
+                <div class="program-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>8 Weeks • Specialization Track</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>AR/VR Developer Certification</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-laptop-code"></i>
+                        <span>Real-world Project Work</span>
+                    </div>
+                </div>
+                <div class="flex-spacer"></div>
+                <a href="index.html#contact" class="btn btn-primary btn-block">Apply Now</a>
+            </div>
+        </div>
+
+        <!-- Game Design Bootcamp -->
+       <!-- Game Design Bootcamp -->
+<div class="program-card">
+    <div class="program-image" style="background-image: url('assets/images/game-design-training.jpg');"></div>
+    <div class="program-content">
+        <h3>Game Design Bootcamp</h3>
+        <p>Explore the art and science of game design, including mechanics, systems, storytelling, and rapid prototyping.</p>
+        
+        <div class="program-details">
+            <div class="detail-item">
+                <i class="fas fa-clock"></i>
+                <span>6 Weeks • Creative Bootcamp</span>
+            </div>
+            <div class="detail-item">
+                <i class="fas fa-certificate"></i>
+                <span>Portfolio & Prototype Projects</span>
+            </div>
+            <div class="detail-item">
+                <i class="fas fa-gamepad"></i>
+                <span>Build 3 Playable Games</span>
+            </div>
+        </div>
+
+        <!-- Spacer div to push the button down -->
+        <div class="flex-spacer"></div>
+
+        <a href="index.html#contact" class="btn btn-primary btn-block">Start Learning</a>
+    </div>
+</div>
+
+</section>
+
+    <!-- <section class="testimonials-section">
+        <h2 class="section-title">Success <span>Stories</span></h2>
+        
+        <div class="testimonials-grid">
+            <!- Testimonial 1 ->
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    The Unity Developer Program transformed my career. Within 3 months of completing the course, I landed a job at a gaming studio. The hands-on projects were exactly what I needed to build my portfolio.
+                </div>
+                <div class="testimonial-author">
+                    <img src="assets/images/testimonial1.jpg" alt="Student" class="author-avatar">
+                    <div class="author-info">
+                        <h4>Rahul Menon</h4>
+                        <p>Junior Unity Developer at PlayZ Studios</p>
+                    </div>
+                </div>
+            </div>
+            
+            <! Testimonial 2 ->
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    As a designer with no coding background, I was hesitant about AR/VR development. The instructors at Auramaze made complex concepts accessible. I've now launched my first AR app on the App Store!
+                </div>
+                <div class="testimonial-author">
+                    <img src="assets/images/testimonial2.jpg" alt="Student" class="author-avatar">
+                    <div class="author-info">
+                        <h4>Priya Sharma</h4>
+                        <p>AR Designer & Developer</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!- Testimonial 3 ->
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    The Game Design Bootcamp gave me the structured learning I needed. The curriculum covers everything from concept to publishing. The industry connections I made were invaluable for my indie game studio.
+                </div>
+                <div class="testimonial-author">
+                    <img src="assets/images/testimonial3.jpg" alt="Student" class="author-avatar">
+                    <div class="author-info">
+                        <h4>Arjun Patel</h4>
+                        <p>Founder, PixelForge Games</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <section class="cta-section">
+        <div class="cta-box">
+            <h2>Ready to Start Your Journey?</h2>
+            <p>Join our next cohort of aspiring XR developers and game designers. Limited seats available for personalized mentorship.</p>
+            <a href="index.html#contact" class="btn btn-primary">Apply Now</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Auramaze.in. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM fully loaded'); // Verify DOM ready
+            
+            // Mobile menu functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            console.log('Button element:', mobileMenuBtn); // Should show element
+            console.log('Menu element:', navLinks); // Should show element
+            
+            if (mobileMenuBtn && navLinks) {
+                console.log('Initializing mobile menu...');
+                
+                mobileMenuBtn.addEventListener('click', function() {
+                    console.log('Menu button clicked!'); // Now this should show
+                    
+                    // Toggle menu visibility
+                    navLinks.classList.toggle('active');
+                    
+                    // Toggle icon
+                    const icon = this.querySelector('i');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                    
+                    // Toggle body scroll
+                    document.body.style.overflow = navLinks.classList.contains('active') 
+                        ? 'hidden' 
+                        : '';
+                });
+                
+                // Close menu when clicking links
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navLinks.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        document.body.style.overflow = '';
+                    });
+                });
+            } else {
+                console.error('Missing required elements for mobile menu');
+            }
+        });
+    </script>
+</body>
+</html>
