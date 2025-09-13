@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auramaze - Blog Post</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome/css/all.min.css">
+    <style>
+        /* Additional styles for the blog post page */
+        :root {
+            --dark-bg: #050508;
+            --darker-bg: #030305;
+            --light-text: #E0E0E0;
+            --dark-text: #050508;
+            --primary-color: #00E0FF;
+            --secondary-color: #00F0FF;
+            --font-main: 'Montserrat', sans-serif;
+            --font-heading: 'Orbitron', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--light-text);
+        }
+
+        .post-main {
+            background-color: var(--dark-bg);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .post-hero-image {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 2px solid var(--primary-color);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .post-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            line-height: 1.8;
+        }
+
+        .post-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .post-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .post-meta {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .post-meta span {
+            margin: 0 5px;
+        }
+
+        .post-content h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--light-text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .post-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 10px;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 60px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .post-hero-image {
+                height: 250px;
+            }
+            .post-title {
+                font-size: 2.5rem;
+            }
+            .post-content h2 {
+                font-size: 1.5rem;
+            }
+            .post-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="post-main">
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Auramaze Logo">
+            </div>
+            <nav>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="clients.html">Our Clients</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="post-hero-image" style="background-image: url('https://placehold.co/1200x400/00E0FF/000000?text=Blog+Post+Title+Image');"></div>
+
+    <main class="post-container">
+        <div class="post-header">
+            <h1 class="post-title">The Future of AR in Education</h1>
+            <div class="post-meta">
+                <span>By Aether</span> <span>|</span> <span>Oct 26, 2025</span> <span>|</span> <span>3 min read</span>
+            </div>
+        </div>
+
+        <div class="post-content">
+            <p>The classroom of tomorrow is not confined by four walls. It’s an immersive, interactive space where augmented reality (AR) transforms abstract concepts into tangible, visual experiences. At Auramaze, we believe that AR is a powerful tool that can bridge the gap between theoretical knowledge and practical understanding.</p>
+
+            <h2>Why AR is a Game-Changer</h2>
+            <p>Traditional learning methods often rely on two-dimensional images and static diagrams. AR changes this by overlaying digital information onto the real world, allowing students to interact with 3D models and simulations directly in their environment. Imagine dissecting a virtual frog on your desk, or exploring the solar system right in your classroom. This hands-on approach dramatically increases engagement and retention.</p>
+            <ul>
+                <li><strong>Enhanced Visualization:</strong> AR helps visualize complex topics like molecular structures, human anatomy, and historical events.</li>
+                <li><strong>Interactive Learning:</strong> Students can manipulate 3D objects, solve virtual puzzles, and participate in collaborative AR activities.</li>
+                <li><strong>Accessibility:</strong> AR can make educational content more accessible to students with different learning styles and abilities.</li>
+            </ul>
+
+            <h2>Creating the Next Generation of Learning Tools</h2>
+            <p>Our team at Auramaze specializes in developing custom AR applications for educational institutions. We work closely with educators to design content that is not only scientifically accurate but also fun and engaging. We use platforms like Unity and ARKit/ARCore to build robust and scalable solutions that work on a variety of devices, from tablets to AR glasses.</p>
+
+            <p>As the technology becomes more widespread and affordable, the potential for AR in education is limitless. We are proud to be at the forefront of this revolution, helping to shape a more interactive and insightful learning experience for students around the world.</p>
+
+        </div>
+        <a href="blog.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Blog
+        </a>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Auramaze.in. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (mobileMenuBtn && navLinks) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+                });
+                
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navLinks.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

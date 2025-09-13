@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auramaze - Blog</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <style>
+        /* Additional styles specific to the blog page */
+        :root {
+            --dark-bg: #050508;
+            --darker-bg: #030305;
+            --light-text: #E0E0E0;
+            --dark-text: #050508;
+            --primary-color: #00E0FF;
+            --secondary-color: #00F0FF;
+            --font-main: 'Montserrat', sans-serif;
+            --font-heading: 'Orbitron', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--light-text);
+        }
+
+        .blog-main {
+            background-color: var(--dark-bg);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .blog-hero {
+            background-image: linear-gradient(to bottom, rgba(5, 5, 8, 0.9), rgba(5, 5, 8, 0.9)), url('assets/images/blog-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light-text);
+            position: relative;
+        }
+        
+        .blog-hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .blog-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: var(--light-text);
+        }
+
+        .blog-hero h1 span {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .blog-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .blog-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--light-text);
+        }
+
+        .section-title span {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .blog-card {
+            background: rgba(20, 20, 30, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .blog-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .blog-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .blog-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .blog-meta {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 15px;
+        }
+
+        .blog-excerpt {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            flex-grow: 1;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta-box {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(20, 20, 30, 0.8);
+            border-radius: 10px;
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
+        }
+        
+        .cta-box h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .cta-box p {
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .blog-hero h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="blog-main">
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Auramaze Logo">
+            </div>
+            <nav>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="clients.html">Our Clients</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="blog-hero">
+        <div class="blog-hero-content">
+            <h1>Insights from <span>Auramaze</span></h1>
+            <p>Stay up-to-date with our latest projects, industry insights, and technical guides in AR/VR and game development.</p>
+        </div>
+    </section>
+
+    <section class="blog-section">
+        <div class="container">
+            <h2 class="section-title">Latest <span>Posts</span></h2>
+            <div class="blog-grid" id="blog-grid">
+                <!-- Blog posts will be dynamically loaded here -->
+                <p>Loading blog posts...</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-box">
+            <h2>Have an Idea for a Topic?</h2>
+            <p>We love hearing from our community. Share your thoughts or suggest a topic for our next blog post.</p>
+            <a href="index.html#contact" class="btn btn-primary">Contact Us</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Auramaze.in. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (mobileMenuBtn && navLinks) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+                });
+                
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navLinks.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
+            
+            // --- Blog Post Loading Logic ---
+            const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSEtpxh6xOVOPXPBREjIE1k4RcmJ-wNqDnBIwhSIcGuL_Zzib9zEn48U2OGvr4Lsjfsk9PSqXgubfvc/pub?output=csv';
+            const blogGrid = document.getElementById('blog-grid');
+            blogGrid.innerHTML = '<p style="text-align: center;">Loading blog posts...</p>';
+
+            Papa.parse(csvUrl, {
+                download: true,
+                header: true,
+                complete: function(results) {
+                    const posts = results.data.filter(row => row.id && row.id.trim() !== '');
+                    blogGrid.innerHTML = ''; // Clear loading message
+
+                    if (posts.length > 0) {
+                        posts.forEach(post => {
+                            const postElement = document.createElement('div');
+                            postElement.className = 'blog-card';
+                            postElement.innerHTML = `
+                                <div class="blog-image" style="background-image: url('${post.image_url}');"></div>
+                                <div class="blog-content">
+                                    <h3 class="blog-title">${post.title}</h3>
+                                    <p class="blog-meta">By ${post.author} | ${post.date}</p>
+                                    <p class="blog-excerpt">${post.excerpt}</p>
+                                    <a href="post.html?id=${post.id}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            `;
+                            blogGrid.appendChild(postElement);
+                        });
+                    } else {
+                        blogGrid.innerHTML = '<p style="text-align: center;">No blog posts found.</p>';
+                    }
+                },
+                error: function(err, file) {
+                    console.error("Error parsing CSV:", err);
+                    blogGrid.innerHTML = '<p style="text-align: center; color: red;">Failed to load blog posts. Please check the CSV link.</p>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
