@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auramaze - Our Clients</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome/css/all.min.css">
+    <style>
+        /* Additional styles specific to the clients page */
+        :root {
+            --dark-bg: #050508;
+            --darker-bg: #030305;
+            --light-text: #E0E0E0;
+            --dark-text: #050508;
+            --primary-color: #00E0FF;
+            --secondary-color: #00F0FF;
+            --font-main: 'Montserrat', sans-serif;
+            --font-heading: 'Orbitron', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--light-text);
+        }
+
+        .clients-main {
+            background-color: var(--dark-bg);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .clients-hero {
+            background-image: linear-gradient(to bottom, rgba(5, 5, 8, 0.9), rgba(5, 5, 8, 0.9)), url('assets/images/clients-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light-text);
+            position: relative;
+        }
+        
+        .clients-hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .clients-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: var(--light-text);
+        }
+
+        .clients-hero h1 span {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .clients-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .clients-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--light-text);
+        }
+
+        .section-title span {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .client-logo img {
+            width: 100%;
+            height: auto;
+            max-width: 150px;
+            filter: grayscale(100%) brightness(1.5) contrast(1.2);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .client-logo img:hover {
+            filter: grayscale(0%) brightness(1.2);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .testimonials-section {
+            padding: 80px 0;
+            background-color: var(--darker-bg);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .testimonial-card {
+            background: rgba(20, 20, 30, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            border: 1px solid rgba(0, 240, 255, 0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+        }
+        
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .author-info h4 {
+            color: var(--light-text);
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta-box {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(20, 20, 30, 0.8);
+            border-radius: 10px;
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
+        }
+        
+        .cta-box h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .cta-box p {
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .clients-hero h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .clients-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body class="clients-main">
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Auramaze Logo">
+            </div>
+            <nav>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="clients.html">Our Clients</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="clients-hero">
+        <div class="clients-hero-content">
+            <h1>Trusted By <span>Innovators</span></h1>
+            <p>We partner with visionary companies to create immersive and impactful digital experiences.</p>
+        </div>
+    </section>
+
+    <section class="clients-section">
+        <div class="container">
+            <h2 class="section-title">Some of our <span>Partners</span></h2>
+            <div class="clients-grid">
+                <!-- Placeholder Client Logos -->
+                <div class="client-logo">
+                    <img src="assets/images/Lumi.png" alt="Client A Logo">
+                </div>
+                <div class="client-logo">
+                    <img src="assets/images/Sruthy_n.png" alt="Client B Logo">
+                </div>
+               <!-- <div class="client-logo">
+                    <img src="assets/images/nexlab.png" alt="Client C Logo">
+                </div>
+                <div class="client-logo">
+                    <img src="https://placehold.co/200x100/00E0FF/000000?text=Client+D" alt="Client D Logo">
+                </div>
+                <div class="client-logo">
+                    <img src="https://placehold.co/200x100/00E0FF/000000?text=Client+E" alt="Client E Logo">
+                </div>
+                <div class="client-logo">
+                    <img src="https://placehold.co/200x100/00E0FF/000000?text=Client+F" alt="Client F Logo">
+                </div>
+                <div class="client-logo">
+                    <img src="https://placehold.co/200x100/00E0FF/000000?text=Client+G" alt="Client G Logo">
+                </div>
+                <div class="client-logo">
+                    <img src="https://placehold.co/200x100/00E0FF/000000?text=Client+H" alt="Client H Logo">
+                </div> -->
+            </div>
+        </div>
+    </section>
+<!--
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">Success <span>Stories</span></h2>
+            <div class="testimonials-grid">
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        The team at Auramaze delivered an incredible VR training simulation that exceeded our expectations. Their technical expertise and creative vision are unmatched.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://placehold.co/50x50/ff4b4b/ffffff?text=U1" alt="User 1" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Rahul Menon</h4>
+                            <p>CEO, InnovateTech</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        Working with Auramaze was a seamless experience. They understood our needs perfectly and built a compelling mobile game that has received fantastic reviews.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://placehold.co/50x50/4b8aff/ffffff?text=U2" alt="User 2" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <p>Lead Producer, Gaming Studio</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        Auramaze’s expertise in AR development helped us create a unique marketing campaign that captivated our audience. We look forward to our next project together!
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://placehold.co/50x50/4bff4b/ffffff?text=U3" alt="User 3" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Arjun Patel</h4>
+                            <p>Marketing Director, FutureBrand</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <section class="cta-section">
+        <div class="cta-box">
+            <h2>Join Our List of Satisfied Clients</h2>
+            <p>Ready to build a world-class digital experience? Let's discuss your project.</p>
+            <a href="index.html#contact" class="btn btn-primary">Get a Quote</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Auramaze.in. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (mobileMenuBtn && navLinks) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+                });
+                
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navLinks.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
