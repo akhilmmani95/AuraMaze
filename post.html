@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auramaze - Blog Post</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/font-awesome/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <style>
         /* Additional styles for the blog post page */
         :root {
@@ -148,33 +150,18 @@
         </div>
     </header>
 
-    <div class="post-hero-image" style="background-image: url('https://placehold.co/1200x400/00E0FF/000000?text=Blog+Post+Title+Image');"></div>
+    <div class="post-hero-image" id="post-hero-image"></div>
 
     <main class="post-container">
         <div class="post-header">
-            <h1 class="post-title">The Future of AR in Education</h1>
-            <div class="post-meta">
-                <span>By Aether</span> <span>|</span> <span>Oct 26, 2025</span> <span>|</span> <span>3 min read</span>
-            </div>
+            <h1 class="post-title" id="post-title"></h1>
+            <div class="post-meta" id="post-meta"></div>
         </div>
 
-        <div class="post-content">
-            <p>The classroom of tomorrow is not confined by four walls. It’s an immersive, interactive space where augmented reality (AR) transforms abstract concepts into tangible, visual experiences. At Auramaze, we believe that AR is a powerful tool that can bridge the gap between theoretical knowledge and practical understanding.</p>
-
-            <h2>Why AR is a Game-Changer</h2>
-            <p>Traditional learning methods often rely on two-dimensional images and static diagrams. AR changes this by overlaying digital information onto the real world, allowing students to interact with 3D models and simulations directly in their environment. Imagine dissecting a virtual frog on your desk, or exploring the solar system right in your classroom. This hands-on approach dramatically increases engagement and retention.</p>
-            <ul>
-                <li><strong>Enhanced Visualization:</strong> AR helps visualize complex topics like molecular structures, human anatomy, and historical events.</li>
-                <li><strong>Interactive Learning:</strong> Students can manipulate 3D objects, solve virtual puzzles, and participate in collaborative AR activities.</li>
-                <li><strong>Accessibility:</strong> AR can make educational content more accessible to students with different learning styles and abilities.</li>
-            </ul>
-
-            <h2>Creating the Next Generation of Learning Tools</h2>
-            <p>Our team at Auramaze specializes in developing custom AR applications for educational institutions. We work closely with educators to design content that is not only scientifically accurate but also fun and engaging. We use platforms like Unity and ARKit/ARCore to build robust and scalable solutions that work on a variety of devices, from tablets to AR glasses.</p>
-
-            <p>As the technology becomes more widespread and affordable, the potential for AR in education is limitless. We are proud to be at the forefront of this revolution, helping to shape a more interactive and insightful learning experience for students around the world.</p>
-
+        <div class="post-content" id="post-content">
+            <p style="text-align: center;">Loading...</p>
         </div>
+        
         <a href="blog.html" class="back-link">
             <i class="fas fa-arrow-left"></i> Back to Blog
         </a>
@@ -211,6 +198,53 @@
                     });
                 });
             }
+
+            // --- Blog Post Loading Logic ---
+            const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSEtpxh6xOVOPXPBREjIE1k4RcmJ-wNqDnBIwhSIcGuL_Zzib9zEn48U2OGvr4Lsjfsk9PSqXgubfvc/pub?output=csv';
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = urlParams.get('id');
+
+            const postTitleEl = document.getElementById('post-title');
+            const postMetaEl = document.getElementById('post-meta');
+            const postContentEl = document.getElementById('post-content');
+            const postImageEl = document.getElementById('post-hero-image');
+            
+            // Set initial content to handle cases where fetch might fail or be slow
+            postTitleEl.textContent = 'Loading...';
+            postMetaEl.textContent = '';
+            postContentEl.innerHTML = '<p style="text-align: center;">Fetching post data...</p>';
+
+            if (!postId) {
+                postContentEl.innerHTML = '<p style="text-align: center; color: red;">Error: Post ID not specified.</p>';
+                return;
+            }
+
+            Papa.parse(csvUrl, {
+                download: true,
+                header: true,
+                complete: function(results) {
+                    // Filter out any empty rows
+                    const data = results.data.filter(row => Object.values(row).some(value => value.trim() !== ''));
+                    const post = data.find(row => row.id === postId);
+
+                    if (post) {
+                        postTitleEl.textContent = post.title;
+                        postMetaEl.innerHTML = `<span>By ${post.author}</span> <span>|</span> <span>${post.date}</span>`;
+                        postImageEl.style.backgroundImage = `url('${post.image_url}')`;
+                        postContentEl.innerHTML = post.content;
+                        document.title = `Auramaze - ${post.title}`;
+                    } else {
+                        postTitleEl.textContent = 'Post Not Found';
+                        postMetaEl.textContent = '';
+                        postContentEl.innerHTML = '<p style="text-align: center;">The requested blog post could not be found.</p>';
+                    }
+                },
+                error: function(err, file) {
+                    console.error("Error parsing CSV:", err);
+                    postContentEl.innerHTML = '<p style="text-align: center; color: red;">Failed to load blog post. Please check the CSV link.</p>';
+                }
+            });
         });
     </script>
 </body>
